@@ -10,12 +10,14 @@ cursor.execute(
 
 results = cursor.fetchall()
 
-print(results)
+# print(results[0][1])
 conn.close()
-smtpObj = smtplib.SMTP('smtp.yandex.com', 587)
+smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
 smtpObj.starttls()
-smtpObj.login('s41blizzard@yandex.ru', 'Gravity84')
-smtpObj.sendmail("s41blizzard@yandex.ru", "s41.blizzard@mail.ru", "test test")
+smtpObj.login('zard.41@gmail.com', 'gravity84')
+text = "Поздавляем сотрудника " + results[0][1] + " " + results[0][2] + " с Днем Рождения!"
+text_encoded = text.encode('utf-8').strip()
+smtpObj.sendmail("zard.41@gmail.com", "s41.blizzard@mail.ru", text_encoded)
 
 # текущая день месяц strftime('%m','now'), strftime('%d','now')
 # запрос для др "SELECT id, LastName, FirstName from employees WHERE strftime('%m',DOB) = strftime('%m','now') AND  strftime('%d','now') = strftime('%d', DOB)"
