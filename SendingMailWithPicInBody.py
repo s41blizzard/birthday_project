@@ -2,7 +2,9 @@ import smtplib
 import sqlite3
 from email.message import EmailMessage
 from email.utils import make_msgid
+from UnitePic import picture_overlay
 
+#
 # from bd_connection import sqlite_connect
 
 conn = sqlite3.connect('employees.sqlite')
@@ -17,6 +19,10 @@ conn.close()
 # Create the base text message.
 for item in results:
     pic_sql = item[3]
+    # print(pic_sql)
+    overlayed_pic = picture_overlay(pic_sql)
+    # print(overlayed_pic)
+    # print(pic_sql)
     msg = EmailMessage()
     msg['Subject'] = "Поздавляем сотрудника " + item[1] + " " + item[2] + " с Днем Рождения!"
     msg['From'] = ("zard.41@gmail.com")
@@ -34,7 +40,7 @@ for item in results:
       </body>
     </html>
     """.format(asparagus_cid=asparagus_cid[1:-1]), subtype='html')
-    msg.get_payload()[1].add_related(pic_sql, 'pic.jpg', 'jpeg',
+    msg.get_payload()[1].add_related(overlayed_pic, 'pic.jpg', 'jpeg',
                                      cid=asparagus_cid)
     # Send the message via local SMTP server.
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
@@ -42,3 +48,4 @@ for item in results:
     smtpObj.login('zard.41@gmail.com', 'bi31V3Iu4J')
     with smtpObj as s:
         s.send_message(msg)
+        pass

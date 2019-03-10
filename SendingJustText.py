@@ -22,6 +22,3 @@ for empl in results:
     text_encoded = message.encode('utf-8').strip()
     # smtpObj.sendmail("zard.41@gmail.com", "s41.blizzard@mail.ru", text_encoded)
 
-# текущая день месяц strftime('%m','now'), strftime('%d','now')
-# запрос для др "SELECT id, LastName, FirstName from employees WHERE strftime('%m',DOB) = strftime('%m','now') AND  strftime('%d','now') = strftime('%d', DOB)"
-###
