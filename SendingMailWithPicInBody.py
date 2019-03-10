@@ -10,21 +10,17 @@ from PictureOverlay import picture_overlay
 conn = sqlite3.connect('employees.sqlite')
 cursor = conn.cursor()
 cursor.execute(
-    "SELECT id, LastName, FirstName, Photo from employees WHERE strftime('%m',DOB) = strftime('%m','now') AND  strftime('%d','now') = strftime('%d', DOB)")
+    "SELECT FIO, GENDER, PHOTO from zup_employees WHERE strftime('%m',DOB) = strftime('%m','now') AND  strftime('%d','now') = strftime('%d', DOB)")
 
 results = cursor.fetchall()
-print(results)
 conn.close()
 
 # Create the base text message.
 for item in results:
-    pic_sql = item[3]
-    # print(pic_sql)
+    pic_sql = item[2]
     overlayed_pic = picture_overlay(pic_sql)
-    # print(overlayed_pic)
-    # print(pic_sql)
     msg = EmailMessage()
-    msg['Subject'] = "Поздавляем сотрудника " + item[1] + " " + item[2] + " с Днем Рождения!"
+    msg['Subject'] = "Поздавляем  сотрудника " + item[0] + " с Днем Рождения!"
     msg['From'] = ("zard.41@gmail.com")
     msg['To'] = ('s41.blizzard@mail.ru')
     msg.set_content("""\
