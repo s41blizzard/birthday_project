@@ -2,7 +2,7 @@ import smtplib
 import sqlite3
 from email.message import EmailMessage
 from email.utils import make_msgid
-from UnitePic import picture_overlay
+from PictureOverlay import picture_overlay
 
 #
 # from bd_connection import sqlite_connect
@@ -48,4 +48,3 @@ for item in results:
     smtpObj.login('zard.41@gmail.com', 'bi31V3Iu4J')
     with smtpObj as s:
         s.send_message(msg)
-        pass
