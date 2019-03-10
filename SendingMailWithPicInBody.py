@@ -4,8 +4,7 @@ from email.message import EmailMessage
 from email.utils import make_msgid
 from PictureOverlay import picture_overlay
 
-#
-# from bd_connection import sqlite_connect
+
 
 conn = sqlite3.connect('employees.sqlite')
 cursor = conn.cursor()
@@ -18,7 +17,7 @@ conn.close()
 # Create the base text message.
 for item in results:
     pic_sql = item[2]
-    overlayed_pic = picture_overlay(pic_sql)
+    overlayed_pic = picture_overlay(pic_sql, item[1])
     msg = EmailMessage()
     msg['Subject'] = "Поздавляем  сотрудника " + item[0] + " с Днем Рождения!"
     msg['From'] = ("zard.41@gmail.com")

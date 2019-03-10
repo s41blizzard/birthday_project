@@ -1,17 +1,23 @@
 from PIL import Image
 from io import BytesIO
 import io
-import random
+import os, random
 
 
 # Наложение фото сотрудника на фон открытки
 
-def picture_overlay(photo):
+def picture_overlay(photo, gender):
     buf = BytesIO(photo)
     foreground = Image.open(buf)
     foreground = foreground.convert('RGBA')
-
-    background = Image.open(r"big.jpg")
+    male_background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\male_background"
+    female_background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\female_background"
+    if gender == 'Женский':
+        background_path = female_background_path
+    else:
+        background_path = male_background_path
+    background_filename = random.choice(os.listdir(background_path))
+    background = Image.open(background_path + "\\" + background_filename)
     background = background.convert('RGBA')
 
     bwidth, bheight = background.size[0], background.size[1]
@@ -22,6 +28,5 @@ def picture_overlay(photo):
     img_bytes = io.BytesIO()
     background.save(img_bytes, format='PNG')
     img_bytes = img_bytes.getvalue()
-
 
     return img_bytes
