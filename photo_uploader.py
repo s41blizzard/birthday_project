@@ -1,6 +1,7 @@
 import sqlite3
 import os
 
+# пока не готово
 conn = sqlite3.connect('employees.sqlite')
 cursor = conn.cursor()
 cursor.execute('SELECT id,  FIO from zup_employees')
@@ -14,4 +15,3 @@ for i in file_names:
     file_names_trimmed.append(i.strip())
 
 print(file_names_trimmed)
-
