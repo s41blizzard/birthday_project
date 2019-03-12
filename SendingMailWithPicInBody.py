@@ -10,7 +10,6 @@ cursor.execute(
     "SELECT FirstName, LastName, GENDER, PHOTO from zup_employees WHERE strftime('%m',DOB) = strftime('%m','now') AND  strftime('%d','now') = strftime('%d', DOB)")
 
 results = cursor.fetchall()
-print(results)
 conn.close()
 
 # Create the base text message.
