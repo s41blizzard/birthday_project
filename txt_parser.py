@@ -7,7 +7,7 @@ ids = cursor.fetchall()
 ids_list = []
 for item in ids:
     ids_list.append(item[0])
-print(ids_list)
+
 with open(r'C:\Users\s41bl\PycharmProjects\project_birthday\for_empl_list\zup_employees.txt',
           encoding="utf-8-sig") as x:
     for line in x:
