@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 conn = sqlite3.connect('employees.sqlite')
 cursor = conn.cursor()
@@ -8,7 +9,18 @@ ids_list = []
 for item in ids:
     ids_list.append(item[0])
 
-with open(r'C:\Users\s41bl\PycharmProjects\project_birthday\for_empl_list\zup_employees.txt',
+
+def get_the_latest_file(path):
+    file_paths = []
+    for top, dirs, files in os.walk(path):
+        for nm in files:
+            file_paths.append(os.path.join(top, nm))
+    date_list = [[x, os.path.getctime(x)] for x in file_paths]
+    sort_date_list = sorted(date_list, key=lambda x: x[1], reverse=True)
+    return sort_date_list[0][0]
+
+
+with open(get_the_latest_file(r'C:\Users\s41bl\PycharmProjects\project_birthday\for_parsing'),
           encoding="utf-8-sig") as x:
     for line in x:
         line_arr = (line.split('\t'))

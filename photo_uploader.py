@@ -19,8 +19,6 @@ for i in file_names:
 for photo in file_names_trimmed:
 
     if photo in presumedFileNameList:
-        print(photo.split(" ")[0])
-        print(photo.split(" ")[1])
         photo_bytes = open(photo_path + '\\' + photo + ' .jpg', 'rb').read()
         cursor = conn.cursor()
         cursor.execute("UPDATE zup_employees SET PHOTO = ? WHERE FirstName = ? AND LastName = ?",
