@@ -10,6 +10,7 @@ def picture_overlay(photo, gender):
     buf = BytesIO(photo)
     foreground = Image.open(buf)
     foreground = foreground.convert('RGBA')
+    foreground = foreground.rotate(10)
     male_background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\male_background"
     female_background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\female_background"
     if gender == 'Женский':
@@ -24,8 +25,9 @@ def picture_overlay(photo, gender):
     fwidth, fheight = foreground.size[0], foreground.size[1]
     x, y = int((bwidth / 2) - (fwidth / 2)), int((bheight / 2) - (fheight / 2))  # центрирование
 
-    background.paste(foreground, (x, y), mask=foreground)
+    background.paste(foreground, (284, 268), mask=foreground)
     img_bytes = io.BytesIO()
+    background.show()
     background.save(img_bytes, format='PNG')
     img_bytes = img_bytes.getvalue()
 

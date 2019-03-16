@@ -20,7 +20,8 @@ def get_the_latest_file(path):
     return sort_date_list[0][0]
 
 
-with open(get_the_latest_file(r'C:\Users\s41bl\PycharmProjects\project_birthday\for_parsing'),
+path = r'C:\Users\s41bl\PycharmProjects\project_birthday\for_parsing'
+with open(get_the_latest_file(path),
           encoding="utf-8-sig") as x:
     for line in x:
         line_arr = (line.split('\t'))

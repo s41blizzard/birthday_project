@@ -17,7 +17,7 @@ for item in results:
     pic_sql = item[3]
     overlayed_pic = picture_overlay(pic_sql, item[2])
     msg = EmailMessage()
-    msg['Subject'] = "Поздавляем  сотрудника " + item[0] + " " + item[1] + " с Днем Рождения!"
+    msg['Subject'] = "Поздавляем  сотрудника " + item[0] + " " + item[1] + " " + " с Днем Рождения!"
     msg['From'] = ("zard.41@gmail.com")
     msg['To'] = ('s41.blizzard@mail.ru')
     msg.set_content("""\
