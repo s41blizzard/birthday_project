@@ -15,7 +15,6 @@ photo_path = r'C:\Users\s41bl\PycharmProjects\project_birthday\empl_photo\\'
 file_names = [os.path.splitext(x)[0] for x in photo_list]
 
 for photo in file_names:
-    # print(photo)
     if photo.strip() in presumedFileNameList:
         photo_bytes = open(photo_path + photo + '.jpg', 'rb').read()
         cursor = conn.cursor()

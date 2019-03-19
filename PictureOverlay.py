@@ -9,6 +9,7 @@ import os, random
 def picture_overlay(photo, gender):
     buf = BytesIO(photo)
     foreground = Image.open(buf)
+    foreground = foreground.resize((200, 260))
     foreground = foreground.convert('RGBA')
     foreground = foreground.rotate(5, expand=True)
     male_background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\male_background"
@@ -25,7 +26,7 @@ def picture_overlay(photo, gender):
     fwidth, fheight = foreground.size[0], foreground.size[1]
     x, y = int((bwidth / 2) - (fwidth / 2)), int((bheight / 2) - (fheight / 2))  # центрирование
 
-    background.paste(foreground, (274, 258), mask=foreground)
+    background.paste(foreground, (250, 250), mask=foreground)
     img_bytes = io.BytesIO()
     background.show()
     background.save(img_bytes, format='PNG')
