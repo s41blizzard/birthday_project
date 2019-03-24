@@ -40,5 +40,4 @@ for item in results:
     smtpObj.starttls()
     smtpObj.login('zard.41@gmail.com', 'bi31V3Iu4J')
     with smtpObj as s:
-        # s.send_message(msg)
-        pass
+        s.send_message(msg)

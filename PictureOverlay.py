@@ -28,7 +28,7 @@ def picture_overlay(photo, gender):
 
     background.paste(foreground, (250, 250), mask=foreground)
     img_bytes = io.BytesIO()
-    background.show()
+    # background.show()
     background.save(img_bytes, format='PNG')
     img_bytes = img_bytes.getvalue()
 
