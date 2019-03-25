@@ -26,17 +26,16 @@ def finding_employee_photo():
     if not found:
         with open('logs.txt', 'a') as f:
             f.write(now.strftime("%d-%m-%Y %H:%M") + ' Фото сотрудника ' + fio + ' не найдено ' + '\n')
-            print('не найдено фото')
     return photo_bytes
 
 
 def picture_overlay(photo):
     buf = BytesIO(photo)
     foreground = Image.open(buf)
-    foreground = foreground.resize((200, 260))
-    foreground = foreground.convert('RGBA')
-    foreground = foreground.rotate(5, expand=True)
-    background_path = r"C:\Users\s41bl\PycharmProjects\project_birthday\background\\"
+    foreground_photo = foreground.resize((200, 260))
+    foreground_photo = foreground_photo.convert('RGBA')
+    foreground_photo = foreground_photo.rotate(5, expand=True)
+    background_path = r"background\\"
     background_filename = random.choice(os.listdir(background_path))
     background = Image.open(background_path + background_filename)
     background = background.convert('RGBA')
@@ -45,7 +44,7 @@ def picture_overlay(photo):
     fwidth, fheight = foreground.size[0], foreground.size[1]
     x, y = int((bwidth / 2) - (fwidth / 2)), int((bheight / 2) - (fheight / 2))  # центрирование
 
-    background.paste(foreground, (250, 250), mask=foreground)
+    background.paste(foreground_photo, (250, 250), mask=foreground_photo)
     img_bytes = io.BytesIO()
     background.save(img_bytes, format='PNG')
     img_bytes = img_bytes.getvalue()
@@ -57,7 +56,7 @@ def send_gratz(picture):
     msg = EmailMessage()
     msg['Subject'] = "Поздавляем  сотрудника " + sys.argv[1] + " с Днем Рождения!"
     msg['From'] = ("zard.41@gmail.com")
-    msg['To'] = ('s41.blizzard@mail.ru')
+    msg['To'] = ('s41.blizzard@mail.ru, zard.41@gmail.com')
     msg.set_content("""\
         test test
         """)
